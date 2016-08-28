@@ -1,0 +1,6 @@
+$if mode=vi
+	# insert mode
+	set keymap vi-insert
+	"jj": vi-movement-mode
+
+$endif
