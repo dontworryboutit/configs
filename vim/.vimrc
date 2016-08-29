@@ -27,8 +27,11 @@ Plugin 'gmarik/Vundle.vim'
 
 " ----- Making Vim look good ------------------------------------------
   Plugin 'altercation/vim-colors-solarized'
+  Plugin 'dracula/vim'
   Plugin 'tomasr/molokai'
   Plugin 'bling/vim-airline'
+  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
   
   " ----- Vim as a programmer's text editor -----------------------------
     Plugin 'scrooloose/nerdtree'
@@ -37,7 +40,19 @@ Plugin 'gmarik/Vundle.vim'
     Plugin 'xolox/vim-misc'
     Plugin 'xolox/vim-easytags'
     Plugin 'majutsushi/tagbar'
-    Plugin 'kien/ctrlp.vim'  
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'vim-scripts/a.vim'
+
+    Plugin 'christoomey/vim-tmux-navigator'
+
+" ----- Working with Git ----------------------------------------------
+  Plugin 'airblade/vim-gitgutter'
+  Plugin 'tpope/vim-fugitive'
+
+  " ----- Other text editing features -----------------------------------
+    Plugin 'Raimondi/delimitMate'
+  
+
 
 call vundle#end()
 
@@ -60,13 +75,14 @@ set mouse=a
 "
   " ----- altercation/vim-colors-solarized settings -----
   " Toggle this to "light" for light colorscheme
-  set background=dark
+  set background=light
 
   " Uncomment the next line if your terminal is not configured for solarized
-  "let g:solarized_termcolors=256
+  let g:solarized_termcolors=256
 
   " Set the colorscheme
-  colorscheme solarized
+  "colorscheme darcula
+  color dracula
 
 
   " ----- bling/vim-airline settings -----
@@ -120,3 +136,26 @@ set mouse=a
   " Uncomment to open tagbar automatically whenever possible
   "autocmd BufEnter * nested :call tagbar#autoopen(0)
 
+
+
+" ----- Raimondi/delimitMate settings -----
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+
+
+
+"############# Syntax #################
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
